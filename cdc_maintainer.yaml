@@ -1,0 +1,66 @@
+version: 1.0.0
+services:
+  zookeeper:
+    image: confluentinc/cp-zookeeper:5.5.3
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+    volumes:
+      - ./zkafka_data/zookeeper/zk-data:/var/lib/zookeeper/data
+      - ./zkafka_data/zookeeper/zk-txn-logs:/var/lib/zookeeper/log
+
+  kafka:
+    image: confluentinc/cp-enterprise-kafka:5.5.3
+    links:
+      - zookeeper
+    environment:
+      KAFKA_ZOOKEEPER_CONNECT: "zookeeper:2181"
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://<IP_ADDRESS>:9092 #  IP ADDRESS OF HOST MACHINE
+      KAFKA_BROKER_ID: 1
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_JMX_PORT: 9991
+    ports:
+      - 9092:9092
+    volumes:
+      - ./zkafka_data/kafka:/var/lib/kafka/data
+
+  kafdrop:
+    image: obsidiandynamics/kafdrop
+    restart: "no"
+    ports:
+      - "9000:9000"
+    environment:
+      KAFKA_BROKERCONNECT: "<IP_ADDRESS>:9092" # BIND HOST IP ADDRESS WITH THE PORT 
+    depends_on:
+      - "kafka"
+
+  connect:
+    image: quay.io/debezium/connect:1.9
+    ports:
+      - 8083:8083
+    links:
+      - kafka
+    environment:
+      - BOOTSTRAP_SERVERS=kafka:9092
+      - GROUP_ID=1
+      - CONFIG_STORAGE_TOPIC=my_connect_configs
+      - OFFSET_STORAGE_TOPIC=my_connect_offsets
+      - STATUS_STORAGE_TOPIC=my_connect_statuses
+      - CONNECTOR_CLASS=io.debezium.connector.mysql.MySqlConnector
+      # MySQL connection details
+      - DATABASE_HOSTNAME=<DATABASE_IP_ADDRESS> # database host IP address
+      - DATABASE_PORT=3306
+      - DATABASE_USER= 
+      - DATABASE_PASSWORD=
+      - DATABASE_SERVER_ID=1 # EXECUTEABLE SQL COMMAND:(SHOW VARIABLES LIKE 'server_id';)
+      - DATABASE_SERVER_NAME=stg-mysql-8-db # EXECUTABLE SQL COMMAND (SELECT @@HOSTNAME;)
+      - DATABASE_HISTORY_KAFKA_TOPIC=schema-changes.cdc_log
+
+  schema-registry:
+    image: confluentinc/cp-schema-registry:5.5.3
+    environment:
+      - SCHEMA_REGISTRY_KAFKASTORE_CONNECTION_URL=zookeeper:2181
+      - SCHEMA_REGISTRY_HOST_NAME=schema-registry
+      - SCHEMA_REGISTRY_LISTENERS=http://schema-registry:8081,http://<IP_ADDRESS>:8081 # IP ADDRESS OF HOST MACHINE 
+    ports:
+      - 8081:8081
+    depends_on: [zookeeper, kafka]
