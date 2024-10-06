@@ -1,4 +1,6 @@
 # Change Data Capture
+![alt text](/public/image.png)
+
 
 
  In This Guide line, We will be implementing a CDC pipeline using `Debezium`, `Apache Kafka`, `Apache Zookeeper` in multiple docker containers maintain by a docker compose file `cdc_maintainer.yaml`.
