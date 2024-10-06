@@ -3,7 +3,8 @@
 
 
 
- In This Guide line, We will be implementing a CDC pipeline using `Debezium`, `Apache Kafka`, `Apache Zookeeper` in multiple docker containers maintain by a docker compose file `cdc_maintainer.yaml`.
+In this guide, we will set up a Change Data Capture (CDC) pipeline using Debezium, Apache Kafka, and Apache Zookeeper, running across multiple Docker containers managed by a Docker Compose file named cdc_maintainer.yaml. 
+This setup is intended for a production environment.
 
 - Step 1: Create a docker compose file and write the following Service (cdc_maintainer.yaml)
 
