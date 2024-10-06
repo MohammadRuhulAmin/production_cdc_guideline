@@ -1,0 +1,19 @@
+{
+    "name": "cdc-connector", /* name of the connector*/
+    "config": {
+      "connector.class": "io.debezium.connector.mysql.MySqlConnector",
+      "tasks.max": "1",
+      "database.hostname": "", /* Database Host IP Address*/
+      "database.port": "3306",
+      "database.user": "",
+      "database.password": "",
+      "database.server.id": "1",  /* DATABASE QUERY (SHOW VARIABLES LIKE 'server_id'; )  */
+      "database.server.name": "", /* DATABASE QUERY (SELECT @@hostname;) */  
+      "table.include.list":"mutation_barisal.cdc_log", /* DATABASE_NAME.TABLE_NAME */
+      "database.history.kafka.bootstrap.servers": "<HOST_IP_ADDRESS>:9092",
+      "database.history.kafka.topic": "schema-changes.cdc_log", /* TOPIC NAME */
+      "database.allowPublicKeyRetrieval": "true", /* ALLOW PUBLIC RETRIEVAL */
+      "database.useSSL": "false", /* SSL FALSE */
+      "name": "cdc-connector"
+    }
+  }

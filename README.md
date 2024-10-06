@@ -173,3 +173,10 @@ The simple response will be like
 if the api shows the above response, now we are ready to test the pipeline.
 
 
+- Step4: check Kafdrop ui: 
+
+```javascript
+<ip_address>:9000
+```
+
+
