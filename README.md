@@ -164,9 +164,18 @@ After exposing the URL, It will response  200/201 status code.
 
 - Step3: To Check the connection status using the curl command:
 
+```javascript
+/* for checking the status of the connector*/
+curl -s http://<HOST_IP_ADDRESS>:8083/connectors/cdc-connector/status
+
+/** for restarting the connector */
+curl -X POST http://<HOST_IP_ADDRESS>:8083/connectors/cdc-connector/restart
+
 ```
-curl -s http://<HOST_IP ADDRESS>:8083/connectors/cdc-connector/status
-```
+
+if you want to delete the connector, you will have to get the worker_id of the connector from the status json,
+from ```curl -s http://<HOST_IP_ADDRESS>:8083/connectors/cdc-connector/status```
+the response:
 
 The simple response will be like
 ```javascript
@@ -176,6 +185,14 @@ The simple response will be like
 if the api shows the above response, now we are ready to test the pipeline.
 
 
+In order to delete cdc-connector just use this:
+
+```javascript
+curl -X DELETE http://<worker_id>:<worker_port>/connectors/cdc-connector
+/*Example: */
+curl -X DELETE http://172.18.0.6:8083/connectors/cdc-connector
+```
+
 - Step4: check Kafdrop ui: 
 
 ```javascript
@@ -184,7 +201,7 @@ if the api shows the above response, now we are ready to test the pipeline.
 
 
 The basic configuration of the debezium-kafka has been established. In this setup, 
-by default all the records of the table will be caught and it will be sent it to the 
+by default all the records of the table will be captured and it will be sent  to the 
 kafka queue. If we want to disable this debezium read mode and only want to sent data to 
 the queue when (Insert, update, delete) will be performed, we have to add a property
 in the connector json. 
@@ -221,4 +238,9 @@ so the json looks like the following:
   }
 
 ```
+
+Now the more interesting part comes, What if i want to capture those records which are only inserted, or only deleted
+or only updated.
+
+
 
