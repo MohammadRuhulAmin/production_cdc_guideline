@@ -193,6 +193,15 @@ curl -X DELETE http://<worker_id>:<worker_port>/connectors/cdc-connector
 curl -X DELETE http://172.18.0.6:8083/connectors/cdc-connector
 ```
 
+you will find the below response when you curl the status api again:
+
+```javascript 
+{"error_code":404,"message":"No status found for connector cdc-connector"}
+```
+
+
+
+
 - Step4: check Kafdrop ui: 
 
 ```javascript
@@ -239,7 +248,7 @@ so the json looks like the following:
 
 ```
 
-Now the more interesting part comes, What if i want to capture those records which are only inserted, or only deleted
+Now the more interesting part comes, Whatif i want to capture those records which are only inserted, or only deleted
 or only updated.
 
 
