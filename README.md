@@ -183,3 +183,42 @@ if the api shows the above response, now we are ready to test the pipeline.
 ```
 
 
+The basic configuration of the debezium-kafka has been established. In this setup, 
+by default all the records of the table will be caught and it will be sent it to the 
+kafka queue. If we want to disable this debezium read mode and only want to sent data to 
+the queue when (Insert, update, delete) will be performed, we have to add a property
+in the connector json. 
+
+the property is: 
+
+```javascript
+     "snapshot.mode": "schema_only",
+```
+
+so the json looks like the following:
+
+
+```javascript
+{
+    "name": "cdc-connector", /* name of the connector*/
+    "config": {
+      "connector.class": "io.debezium.connector.mysql.MySqlConnector",
+      "tasks.max": "1",
+      "database.hostname": "", /* Database Host IP Address*/
+      "database.port": "3306",
+      "database.user": "",
+      "database.password": "",
+      "database.server.id": "1",  /* DATABASE QUERY (SHOW VARIABLES LIKE 'server_id'; )  */
+      "database.server.name": "", /* DATABASE QUERY (SELECT @@hostname;) */  
+      "table.include.list":"mutation_barisal.cdc_log", /* DATABASE_NAME.TABLE_NAME */
+      "database.history.kafka.bootstrap.servers": "<HOST_IP_ADDRESS>:9092",
+      "database.history.kafka.topic": "schema-changes.cdc_log", /* TOPIC NAME */
+      "database.allowPublicKeyRetrieval": "true", /* ALLOW PUBLIC RETRIEVAL */
+      "database.useSSL": "false", /* SSL FALSE */
+      "snapshot.mode": "schema_only",
+      "name": "cdc-connector"
+    }
+  }
+
+```
+
