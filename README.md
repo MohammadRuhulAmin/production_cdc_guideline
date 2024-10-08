@@ -117,8 +117,7 @@ More thing to do:
 The Database Administrator Has to provide the following privilege:
 
 - Global Privilege (Reload, Replication-Client, Replication-slave) [on user level]
-- local Privilege (lock table, select)
-
+- Object Level privileged  (lock table, select)
 
 if the configuration is not fulfilled, the database configuration for CDC is not ready.
 
