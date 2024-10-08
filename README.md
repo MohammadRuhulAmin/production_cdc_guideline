@@ -274,6 +274,16 @@ or only updated.
   KAFKA_DELETE_TOPIC_ENABLE: false
 ```
 
+- To specify the size of the topic : 
+
+```bash
+KAFKA_LOG_RETENTION_BYTES: 1073741824  # 1 GB
+```
+Kafka can generate a significant amount of data over time, especially in high-throughput scenarios. By setting a limit on the size of logs, 
+```KAFKA_LOG_RETENTION_BYTES``` 
+helps prevent the Kafka broker from consuming excessive disk space. 
+Once the log for a partition reaches the specified size,
+Kafka will start deleting the oldest segments of the log to make room for new data.
 
 
 
