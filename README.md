@@ -1,7 +1,7 @@
 # Change Data Capture
 ![alt text](/public/image.png)
 
-
+## Setup and Installation CDC pipeline:
 
 In this guide, we will set up a Change Data Capture (CDC) pipeline using Debezium, Apache Kafka, and Apache Zookeeper, running across multiple Docker containers managed by a Docker Compose file named cdc_maintainer.yaml. 
 This setup is intended for a production environment.
@@ -29,6 +29,9 @@ services:
       KAFKA_BROKER_ID: 1
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
       KAFKA_JMX_PORT: 9991
+      # custom configuration 
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: false
+      KAFKA_LOG_RETENTION_MINUTES: 5
     ports:
       - 9092:9092
     volumes:
@@ -249,6 +252,24 @@ so the json looks like the following:
 
 Now the more interesting part comes, Whatif i want to capture those records which are only inserted, or only deleted
 or only updated.
+
+## Kafka configuration in more details:
+
+- To clear kafka queue after every certain time: 
+
+```bash
+  KAFKA_LOG_RETENTION_MINUTES: 5
+  KAFKA_LOG_RETENTION_HOURS: 1
+  KAFKA_LOG_RETENTION_MS: 12
+```
+
+- Not to allow create a topic from any producer/ consumer: 
+
+```bash 
+  KAFKA_AUTO_CREATE_TOPICS_ENABLE: false # by default it will be true
+```
+
+
 
 
 
