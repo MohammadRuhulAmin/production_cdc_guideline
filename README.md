@@ -8,7 +8,7 @@ This setup is intended for a production environment.
 
 - Step 1: Create a docker compose file and write the following Service (cdc_maintainer.yaml)
 
-```javascript
+```bash
 version: 1.0.0
 services:
   zookeeper:
@@ -86,32 +86,32 @@ services:
 
 1. Check binary log if it is enable or not. If it is off then, need to contact database administrator to make it Enable / ON.
 
-```mysql
+```bash
     SHOW VARIABLES LIKE `log_bin`;
 ```
 
 2. Check the Binlog Format, Debezium requires the binlog format to be set to ROW. You can check the current format with this 
 
-```mysql
+```bash
 SHOW VARIABLES LIKE 'binlog_format';
 ```
 
 3. Check the Binlog Row Image, the value should be FULL.
 
-```mysql
+```bash
 SHOW VARIABLES LIKE 'binlog_row_image';
 ```
 
 4. Check Server ID, We have to put the Server Id in both compose file as well as
 the connector json api.
 
-```mysql
+```bash
 SHOW VARIABLES LIKE 'server_id';
 ```
 
 5. Check the hostname/ database server name of the Database:
 
-```mysql
+```bash
 SELECT @@hostname;
 ```
 
@@ -166,7 +166,7 @@ After exposing the URL, It will response  200/201 status code.
 
 - Step3: To Check the connection status using the curl command:
 
-```javascript
+```bash
 /* for checking the status of the connector*/
 curl -s http://<HOST_IP_ADDRESS>:8083/connectors/cdc-connector/status
 
@@ -219,7 +219,7 @@ in the connector json.
 
 the property is: 
 
-```javascript
+```bash
      "snapshot.mode": "schema_only",
 ```
 
@@ -268,7 +268,11 @@ or only updated.
 ```bash 
   KAFKA_AUTO_CREATE_TOPICS_ENABLE: false # by default it will be true
 ```
+- Not to allow delete topic: 
 
+```bash
+  KAFKA_DELETE_TOPIC_ENABLE: false
+```
 
 
 
