@@ -30,8 +30,8 @@ services:
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
       KAFKA_JMX_PORT: 9991
       # custom configuration 
-      KAFKA_AUTO_CREATE_TOPICS_ENABLE: false
-      KAFKA_LOG_RETENTION_MINUTES: 5
+      #KAFKA_AUTO_CREATE_TOPICS_ENABLE: false
+      #KAFKA_LOG_RETENTION_MINUTES: 5
     ports:
       - 9092:9092
     volumes:
