@@ -11,8 +11,8 @@ environment variables we have to use `KAFKA_` `ZOOKEEPER_` prefix. In kafka docu
 called `advertised.listeners` we will use `KAFKA + "_" + ADVERTISED + "_" + LISTENERS` (replace the `.` separator with `_`)
 
 If you are new please visit:
-- (Debezium Tutorial)[https://debezium.io/documentation/reference/3.0/tutorial.html] 
-- (kafka)[https://kafka.apache.org/]
+- [Debezium Tutorial](https://debezium.io/documentation/reference/3.0/tutorial.html)
+- [kafka](https://kafka.apache.org/)
 
 
 ```bash
