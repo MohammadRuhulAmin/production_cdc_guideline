@@ -293,7 +293,7 @@ helps prevent the Kafka broker from consuming excessive disk space.
 Once the log for a partition reaches the specified size,
 Kafka will start deleting the oldest segments of the log to make room for new data.
 
-
+## Setting Up Kafka Cluster :
 
 Using a Kafka cluster instead of a standalone Kafka instance for capturing data from a large database offers several advantages, particularly around scalability, reliability, and fault tolerance:
 
