@@ -124,7 +124,7 @@ SELECT @@hostname;
 
 More thing to do:
 
-The Database Administrator Has to provide the following privilege To the HOST IP Address Where the Debezium will be deployed:
+The Database Administrator Has to provide the following least privilege To the user credential:
 
 - Global Privilege (Reload, Replication-Client, Replication-slave) [on user level]
 - Object Level privileged  (lock table, select)
@@ -134,7 +134,6 @@ To get All the privileges:
 ```SQL
 CREATE USER 'user'@'MACHINE_IP_ADDRESS' IDENTIFIED BY 'user_PASSWORD';
 GRANT ALL ON *.* TO 'user'@'MACHINE_IP_ADDRESS';
-
 ```
 
 if the configuration is not fulfilled, the database configuration for CDC is not ready.
