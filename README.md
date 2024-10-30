@@ -6,7 +6,14 @@
 In this guide, we will set up a Change Data Capture (CDC) pipeline using Debezium, Apache Kafka, and Apache Zookeeper, running across multiple Docker containers managed by a Docker Compose file named cdc_maintainer.yaml. 
 This setup is intended for a production environment.
 
-- Step 1: Create a docker compose file and write the following Service (cdc_maintainer.yaml)
+- Step 1: Create a docker compose file and write the following Service (cdc_maintainer.yaml), Here for configuring the 
+environment variables we have to use `KAFKA_` `ZOOKEEPER_` prefix. In kafka documentation there is a environment variable 
+called `advertised.listeners` we will use `KAFKA + "_" + ADVERTISED + "_" + LISTENERS` (replace the `.` separator with `_`)
+
+If you are new please visit:
+- (Debezium Tutorial)[https://debezium.io/documentation/reference/3.0/tutorial.html] 
+- (kafka)[https://kafka.apache.org/]
+
 
 ```bash
 version: 1.0.0
