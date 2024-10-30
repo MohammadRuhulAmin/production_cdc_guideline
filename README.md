@@ -1,6 +1,5 @@
 # Change Data Capture
-![alt text](/public/image.png)
-
+![alt text](/public/image2.png)
 ## Setup and Installation CDC pipeline IN (Kafka) Stand Alone Mode :
 
 In this guide, we will set up a Change Data Capture (CDC) pipeline using Debezium, Apache Kafka, and Apache Zookeeper, running across multiple Docker containers managed by a Docker Compose file named cdc_maintainer.yaml. 
