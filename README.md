@@ -1,7 +1,7 @@
 # Change Data Capture
 ![alt text](/public/image.png)
 
-## Setup and Installation CDC pipeline:
+## Setup and Installation CDC pipeline IN (Kafka) Stand Alone Mode :
 
 In this guide, we will set up a Change Data Capture (CDC) pipeline using Debezium, Apache Kafka, and Apache Zookeeper, running across multiple Docker containers managed by a Docker Compose file named cdc_maintainer.yaml. 
 This setup is intended for a production environment.
@@ -117,10 +117,18 @@ SELECT @@hostname;
 
 More thing to do:
 
-The Database Administrator Has to provide the following privilege:
+The Database Administrator Has to provide the following privilege To the HOST IP Address Where the Debezium will be deployed:
 
 - Global Privilege (Reload, Replication-Client, Replication-slave) [on user level]
 - Object Level privileged  (lock table, select)
+
+To get All the privilege: 
+
+```SQL
+CREATE USER 'user'@'MACHINE_IP_ADDRESS' IDENTIFIED BY 'user_PASSWORD';
+GRANT ALL ON *.* TO 'user'@'MACHINE_IP_ADDRESS';
+
+```
 
 if the configuration is not fulfilled, the database configuration for CDC is not ready.
 
@@ -284,6 +292,10 @@ Kafka can generate a significant amount of data over time, especially in high-th
 helps prevent the Kafka broker from consuming excessive disk space. 
 Once the log for a partition reaches the specified size,
 Kafka will start deleting the oldest segments of the log to make room for new data.
+
+
+
+
 
 
 
