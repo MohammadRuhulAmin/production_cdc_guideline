@@ -122,7 +122,7 @@ The Database Administrator Has to provide the following privilege To the HOST IP
 - Global Privilege (Reload, Replication-Client, Replication-slave) [on user level]
 - Object Level privileged  (lock table, select)
 
-To get All the privilege: 
+To get All the privileges: 
 
 ```SQL
 CREATE USER 'user'@'MACHINE_IP_ADDRESS' IDENTIFIED BY 'user_PASSWORD';
@@ -295,7 +295,17 @@ Kafka will start deleting the oldest segments of the log to make room for new da
 
 
 
+Using a Kafka cluster instead of a standalone Kafka instance for capturing data from a large database offers several advantages, particularly around scalability, reliability, and fault tolerance:
+
+  - Scalability: A Kafka cluster allows for horizontal scaling by distributing data and load across multiple brokers. Each broker can handle a portion of the database's data capture process, making it possible to manage high-throughput, large datasets more efficiently.
+  - High Availability: With a single Kafka instance (standalone mode), if it goes down, the entire data capture process stops. A Kafka cluster ensures that multiple brokers replicate data across partitions, so if one broker fails, the others can continue processing with minimal interruption.
+  - Improved Throughput: Kafka clusters enable parallel processing of partitions, which is especially useful for large databases. You can allocate specific topics and partitions to different brokers, improving data ingestion speed and supporting high-velocity data capture without bottlenecks.
+  - Fault Tolerance: Kafka clusters use replication to store copies of each partition on multiple brokers. This redundancy ensures data isn't lost if a single broker experiences issues, which is crucial for mission-critical, large-scale databases.
+  - Data Durability: With Kafka’s distributed architecture, messages are replicated to ensure durability. This setup makes data capture more resilient to unexpected system failures and helps to prevent data loss when dealing with high-volume data from large databases.
+  - Efficient Resource Utilization: By distributing processing across multiple nodes, a Kafka cluster can manage memory, CPU, and network resources more effectively than a standalone setup, reducing the risk of overloading a single machine.
+
+Overall, a Kafka cluster provides a robust and resilient setup suited to handle the demands of capturing and processing data from large, high-volume databases, which would be challenging for a standalone Kafka instance to support effectively.
 
 
-
+### [Kafka Cluster Setup Docker Compose file](https://github.com/MohammadRuhulAmin/docker_tutorial/blob/main/docker_file/cdc_cluster_setup/cdc_cluster_maintainer.yaml)
 
