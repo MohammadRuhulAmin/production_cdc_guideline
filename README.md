@@ -321,8 +321,8 @@ Overall, a Kafka cluster provides a robust and resilient setup suited to handle 
 
 ### [Kafka Cluster Setup Docker Compose file](https://github.com/MohammadRuhulAmin/docker_tutorial/blob/main/docker_file/cdc_cluster_setup/cdc_cluster_maintainer.yaml)
 
-Md. Ruhul Amin
-ETL Engineer
+Md. Ruhul Amin <br>
+ETL Engineer <br>
 Business Automation Ltd.
 
 
