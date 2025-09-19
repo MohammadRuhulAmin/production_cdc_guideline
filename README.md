@@ -1,4 +1,5 @@
 # Change Data Capture
+Date: September,18, 2025
 ![alt text](/public/image2.png)
 ## Setup and Installation CDC pipeline IN (Kafka) Stand Alone Mode :
 
@@ -319,4 +320,9 @@ Overall, a Kafka cluster provides a robust and resilient setup suited to handle 
 
 
 ### [Kafka Cluster Setup Docker Compose file](https://github.com/MohammadRuhulAmin/docker_tutorial/blob/main/docker_file/cdc_cluster_setup/cdc_cluster_maintainer.yaml)
+
+Md. Ruhul Amin
+ETL Engineer
+Business Automation Ltd.
+
 
